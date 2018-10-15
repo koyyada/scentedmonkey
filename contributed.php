@@ -30,45 +30,28 @@ $csvdata.= '<tr>
 </tr>
 ';
 $csvdata .= '</table>';
-echo $csvdata;
-$first = "SELECT * FROM csvdata WHERE itemID='".$row['itemID']."'";
-/* $query_1= mysqli_query($conn, $first);*/
-$csvdata = '<table class="table table-bordered">
-    <tr>
-    <th>id</id>
-    <th>itemID</th>
-    <th>contributed</th>
-    </tr>
-    '; 
-// $row_1= mysqli_fetch_assoc($query_1);
-$csvdata.= '<tr>
-<td></td>
-<td>'.$row['itemID'].'</td>
-<td>'.$row['contributed'].'</td>
-</tr>
-'; 
 
-if(!empty($first)) 
+$first = "SELECT * FROM testcontributed WHERE itemID='".$row['itemID']."'";
+
+$query_1= mysqli_query($conn, $first);
+
+$row_1= mysqli_fetch_assoc($query_1);
+ 
+
+if(empty($row_1)) 
 {
-$sql = "INSERT INTO testcontributed (`id`,`itemID`,`contributed`) VALUES ('$csvdata.itemID','$csvdata.contributed')";
-//$result_1= mysqli_query($conn, $sql);
-//$row_2 = mysqli_fetch_assoc($result_1);
-$csvdata = '<table class="table table-bordered">
-    <tr>
-    <th>id</id>
-    <th>itemID</th>
-    <th>contributed</th>
-    </tr>
-    '; 
-$csvdata.= '<tr>
-<td></td>
-<td>'.$row['itemID'].'</td>
-<td>'.$row['contributed'].'</td>
-</tr>
-'; 
-$csvdata .= '</table>';
-echo $csvdata;
-//mysqli_close($conn);
+    
+echo $sql = "INSERT INTO testcontributed (itemID,contributed) VALUES ('".$row['itemID']."','".$row['contributed']."')";
+$result_1= mysqli_query($conn, $sql);
+
+if(!empty($row_1))
+{
+ $sql_1="UPDATE testcontributed SET itemID ='".$row['itemID']."',.contributed ='".$row['contributed']."'";
+print_r($sql_1);
+ die();
+ $result_2= mysqli_query($conn, $sql_1); 
 }
+}
+die;
 }
 ?>
