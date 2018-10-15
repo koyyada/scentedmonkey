@@ -43,14 +43,12 @@ if(empty($row_1))
     
 echo $sql = "INSERT INTO testcontributed (itemID,contributed) VALUES ('".$row['itemID']."','".$row['contributed']."')";
 $result_1= mysqli_query($conn, $sql);
-
+echo $result;
+}
 if(!empty($row_1))
 {
- $sql_1="UPDATE testcontributed SET itemID ='".$row['itemID']."',.contributed ='".$row['contributed']."'";
-print_r($sql_1);
- die();
- $result_2= mysqli_query($conn, $sql_1); 
-}
+ echo $sql_1="UPDATE testcontributed SET itemID ='".$row['itemID']."',.contributed ='".$row['contributed']."'";
+echo $result_2= mysqli_query($conn, $sql_1); 
 }
 die;
 }
